@@ -1,3 +1,8 @@
+"""
+This file generates three test account into the user.csv. If these accounts get deleted,
+run this file again and generate them again.
+"""
+
 import csv
 
 headers = ['users', 'passwords']
@@ -11,19 +16,21 @@ with open('user.csv', 'w', encoding='utf8', newline='') as f:
     dict_writer.writerows(userslist)
 
 target = '12346'
-with open('user.csv', 'r', encoding='utf8', newline='') as f:
-    csv_DR = csv.DictReader(f)
-    for row in csv_DR:
-        print(row)
-        if row['users'] != target:
-            continue
+if __name__ == '__main__':
+
+    with open('user.csv', 'r', encoding='utf8', newline='') as f:
+        csv_DR = csv.DictReader(f)
+        for row in csv_DR:
+            print(row)
+            if row['users'] != target:
+                continue
+            else:
+                name = row['users']
+                pwd = row['passwords']
+                print(name, pwd)
+                break
         else:
-            name = row['users']
-            pwd = row['passwords']
-            print(name, pwd)
-            break
-    else:
-        print('false')
+            print('false')
 
 
 

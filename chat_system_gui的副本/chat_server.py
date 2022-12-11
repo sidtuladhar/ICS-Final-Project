@@ -53,6 +53,7 @@ class Server:
     def login(self, sock):
         # read the msg that should have login code plus username
         try:
+            self.load_user_list()
             msg = json.loads(myrecv(sock))
             self.load_user_list()
             print("login:", msg)

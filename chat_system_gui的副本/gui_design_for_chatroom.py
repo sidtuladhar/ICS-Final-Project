@@ -276,6 +276,7 @@ class chatroom:
         self.now = datetime.datetime.now()
         self.timeLabel.configure(text=self.now.strftime("%Y-%m-%d %H:%M:%S"))
         self.Window.after(1000, self.update_time)
+        pass
 
     def main_layout(self, name):  # 优化图形界面
         self.update_time()
@@ -379,6 +380,9 @@ class chatroom:
         self.textCons.insert(END, msg + "\n")
         self.textCons.config(state=DISABLED)
         self.textCons.see(END)
+        if msg == 'q':
+            showwarning(title='exit', message='you are exiting the chat system')
+            self.Window.destroy()
 
     def proc(self):
         # print(self.msg)
