@@ -42,10 +42,12 @@ class chatroom:
         self.bg = Label(self.login, anchor='w', bg='white',
                         justify='center', width=500, height=500)
         self.bg.place(x=0, y=0)
+        self.label_banner_set = StringVar()
+        self.label_banner_set.set('Welcome to Chatroom')
         self.label_banner = Label(self.login,
                                   anchor='w',
-                                  text="Welcome to Chatroom",
-                                  fg='white', bg='gray',
+                                  textvariable=self.label_banner_set,
+                                  fg='black', bg='white',
                                   font=('Times New Roman', 28),
                                   width=18, height=1)
         self.label_banner.place(x=100, y=100)
@@ -54,7 +56,7 @@ class chatroom:
         self.lang_set.set('select language')
         self.label_lang_set = Label(self.login,
                                     anchor='nw', textvariable=self.lang_set,
-                                    fg='black',
+                                    fg='black', bg='white',
                                     font=('Times New Roman', 15),
                                     width=20, height=2
                                     )
@@ -69,7 +71,7 @@ class chatroom:
         self.language_button.place(x=270, y=210)
 
         self.user = StringVar()
-        self.user.set('user name')
+        self.user.set('User name')
         self.label_user = Label(self.login,
                                 anchor='nw', textvariable=self.user,
                                 fg='black', bg='white',
@@ -79,7 +81,7 @@ class chatroom:
         self.label_user.place(x=50, y=290)
 
         self.pwd = StringVar()
-        self.pwd.set('password')
+        self.pwd.set('Password')
         self.label_pwd = Label(self.login,
                                anchor='nw', textvariable=self.pwd,
                                fg='black', bg='white',
@@ -98,15 +100,19 @@ class chatroom:
         self.entry_usr_name.focus()
         self.entry_pwd.focus()
 
+        self.login_text_set = StringVar()
+        self.login_text_set.set('login')
         self.login_button = Button(self.login,
-                                   text='login',
+                                   textvariable=self.login_text_set,
                                    width=4, height=1,
                                    command=lambda: self.verify(self.entry_usr_name.get(),
                                                                self.entry_pwd.get()))
         self.login_button.place(x=330, y=410)
 
+        self.reg_text_set = StringVar()
+        self.reg_text_set.set('register')
         self.register_button = Button(self.login,
-                                      text='register',
+                                      textvariable=self.reg_text_set,
                                       width=4, height=1,
                                       command=lambda: self.register())
         self.register_button.place(x=50, y=410)
@@ -252,6 +258,9 @@ class chatroom:
                 self.user.set("用户名")
                 self.pwd.set("密码")
                 self.language.set('语言')
+                self.reg_text_set.set('注册')
+                self.login_text_set.set('登录')
+                self.label_banner_set.set('   欢迎来到聊天室')
             else:
                 pass
         elif self.lan == 1:
@@ -261,6 +270,10 @@ class chatroom:
                 self.lang_set.set("select language")
                 self.user.set("user name")
                 self.pwd.set("password")
+                self.language.set('language')
+                self.reg_text_set.set('register')
+                self.login_text_set.set('login')
+                self.label_banner_set.set('Welcome to Chatroom')
             else:
                 pass
 
@@ -288,9 +301,9 @@ class chatroom:
                               height=False)
         self.Window.configure(width=470,
                               height=700,
-                              bg="#17202A")
+                              bg="#210337")
         self.labelHead = Label(self.Window,
-                               bg="#17202A",
+                               bg="#210337",
                                fg="#EAECEE",
                                text='Welcome, ' + self.name + '!',
                                font="Helvetica 13 bold",
@@ -308,7 +321,7 @@ class chatroom:
         self.textCons = Text(self.Window,
                              width=20,
                              height=2,
-                             bg="#17202A",
+                             bg="#210337",
                              fg="#EAECEE",
                              font="Helvetica 14",
                              padx=5,
@@ -326,7 +339,7 @@ class chatroom:
                                rely=0.825)
 
         self.entryMsg = Entry(self.labelBottom,
-                              bg="#2C3E50",
+                              bg="#562B73",
                               fg="#EAECEE",
                               font="Helvetica 13")
 
